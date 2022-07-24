@@ -65,10 +65,11 @@
     align-items: center;
     position: absolute;
     opacity: 0;
-    /* pointer-events: none; */
+
 }
 .popUpBox.show {
     opacity: 1;
+    pointer-events: auto;
 }
 .popUp {
     display: flex;

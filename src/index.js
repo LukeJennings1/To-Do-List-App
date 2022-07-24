@@ -1,4 +1,4 @@
-class toDo {
+class ToDo {
     constructor(title,description,dueDate) {
         this.title = title;
         this.description = description;
@@ -9,7 +9,7 @@ class toDo {
         return (this.title + this.description + 'HULLO ITS SCON MANLEY')
     }
 };
-const note1 = new toDo('EAT', 'EAT FUD', '25th');
+const note1 = new ToDo('EAT', 'EAT FUD', '25th');
 
 console.log(note1.displayValue())
 
@@ -18,16 +18,12 @@ const addButton = document.getElementById('add-Button')
 const popUpBox = document.getElementById('popUpBox')
 
 addButton.addEventListener('click', () => {  popUpBox.classList.add('show')});
-// addButton.addEventListener('click', () => {  popUpBox.classList.add('show')});
+const delButton = document.getElementById('del-button')
+delButton.addEventListener('click', () => {  popUpBox.classList.remove('show')});
 // This has wired up the show box but I havent yet added a close button in the popup!
-
-
 
 // addButton.addEventListener('click', () => { addToDo() });
  // ^^ needs to be changed so that its called when the addbutton in the popup is used. 
-
-
-
 
 
 let id = 0;
