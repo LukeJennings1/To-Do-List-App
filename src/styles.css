@@ -1,0 +1,72 @@
+* {
+    background-color: #92A8D1;
+}
+.site-contents {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+.header {
+    display: flex;
+    border: solid black;
+    height: 35px;
+    width: 100%;
+    margin-top: -10px;
+}
+.center{
+    display: flex;
+    flex-direction: row;
+    border: solid black;
+    width: 100%;
+    height: 600px;
+}
+.right-side-menu {
+    border: solid black;
+    width: 0%;
+    height: 600px;
+}
+.left-side-menu {
+    border: solid black;
+    width: 25%;
+}
+.content { 
+    border: solid black;
+    display: flex;
+    width: 75%;
+    flex-direction: column;
+    height: 600px;
+    gap: 5px;
+}
+#add-Button {
+    border: solid black;
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+    font-size: 40px;
+    color: rgb(0, 0, 0);
+    background-color: rgb(57, 104, 61);
+    border-color: rgb(57, 104, 61);
+}
+.footer {
+    display: flex;
+    border: solid black;
+    height: 35px;
+    width: 100%;
+    margin-top: -10px; 
+}
+.note {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    border: solid;
+    background-color: #feff9c;
+    width: 200px;
+    height: 200px;
+}
+#toDoNotes { 
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
