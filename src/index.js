@@ -15,7 +15,20 @@ console.log(note1.displayValue())
 
 // add button animation popup
 const addButton = document.getElementById('add-Button')
-addButton.addEventListener('click', () => { addToDo() });
+const popUpBox = document.getElementById('popUpBox')
+
+addButton.addEventListener('click', () => {  popUpBox.classList.add('show')});
+// addButton.addEventListener('click', () => {  popUpBox.classList.add('show')});
+// This has wired up the show box but I havent yet added a close button in the popup!
+
+
+
+// addButton.addEventListener('click', () => { addToDo() });
+ // ^^ needs to be changed so that its called when the addbutton in the popup is used. 
+
+
+
+
 
 let id = 0;
 
@@ -27,14 +40,12 @@ toDoNoteLocation.append(divCreate);
 divCreate.textContent += 'User title input'; // this should be changed to 
 
 
-
+//delete button creation + id assignment to link the button to each created stickynote
 const delCreate = document.createElement('button');
 divCreate.appendChild(delCreate); //creates a button with every note
 let delid = delCreate.id = 'button' + id
-
 let idAssignment = divCreate.id = 'div' + id++ //assign the delete button to this
 delCreate.addEventListener('click', () => { divCreate.remove()})
-
 };
 
 

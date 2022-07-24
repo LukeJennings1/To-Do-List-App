@@ -40,6 +40,7 @@
     gap: 5px;
 }
 #add-Button {
+    position: absolute;
     border: solid black;
     border-radius: 100%;
     width: 50px;
@@ -48,6 +49,8 @@
     color: rgb(0, 0, 0);
     background-color: rgb(57, 104, 61);
     border-color: rgb(57, 104, 61);
+    margin-top: 490px;
+    margin-left: 660px;
 }
 .footer {
     display: flex;
@@ -56,7 +59,35 @@
     width: 100%;
     margin-top: -10px; 
 }
-.note {
+.popUpBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    opacity: 0;
+    /* pointer-events: none; */
+}
+.popUpBox.show {
+    opacity: 1;
+}
+.popUp {
+    display: flex;
+    justify-content: center;
+    height: 500px;
+    width: 500px;
+    border: solid black;
+    padding: 5px;
+    background-color: #feff9c;
+}
+.popUpTitle {
+    height: 50px;
+    width: 505px;
+    font-size: 30px;
+    background-color: #feff9c;
+
+}
+
+/* .note { // this is for when the note is saved 
     display: flex;
     justify-content: center;
     flex-direction: row;
@@ -64,7 +95,7 @@
     background-color: #feff9c;
     width: 200px;
     height: 200px;
-}
+} */
 #toDoNotes { 
     display: flex;
     flex-direction: row;
