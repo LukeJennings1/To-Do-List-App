@@ -20,6 +20,9 @@ const popUpBox = document.getElementById('popUpBox')
 addButton.addEventListener('click', () => {  popUpBox.classList.add('show')});
 const delButton = document.getElementById('del-button')
 delButton.addEventListener('click', () => {  popUpBox.classList.remove('show')});
+const clickAnywhere = document.getElementById('site-contents')
+clickAnywhere.addEventListener('click', () => {  popUpBox.classList.remove('show')});
+
 // This has wired up the show box but I havent yet added a close button in the popup!
 
 // addButton.addEventListener('click', () => { addToDo() });
