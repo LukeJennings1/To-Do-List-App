@@ -79,12 +79,16 @@
     padding: 5px;
     background-color: #feff9c;
 }
+.textInput { 
+    display: flex;
+    flex-direction: column;
+    background-color: #feff9c;
+}
 .popUpTitle {
     height: 50px;
     width: 505px;
     font-size: 30px;
     background-color: #feff9c;
-
 }
 
 /* .note { // this is for when the note is saved 
