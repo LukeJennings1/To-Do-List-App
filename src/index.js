@@ -18,22 +18,25 @@ getInfo.addEventListener('click', () => {addToDo(), console.log(getInfo.value)})
 
         return (this.title + this.details + this.dueDate) }
 };
-
-// const note1 = new ToDo('EAT', 'EAT FUD', '25th');
-// console.log(note1.displayValue())
 let id = 0;
-// const note1 = new ToDo(titleInput.value, detailsInput.value, dateInput.value);
-// console.log(note1.title)
 function addToDo() {
-    const note1 = new ToDo(title.value, details.value, dueDate.value);
-    console.log(note1.titleInput)
+const noteObject = new ToDo(title.value, details.value, dueDate.value);
+
 const toDoNoteLocation = document.getElementById('toDoNotes')
 const divCreate = document.createElement('div');
 divCreate.classList = 'note'
 toDoNoteLocation.append(divCreate);
-divCreate.textContent += note1.title; // this should be changed to 
 
-
+const divTitle = document.createElement('div');
+divTitle.classList = 'divTitle'
+divTitle.textContent += noteObject.title;
+const divDetails = document.createElement('div');
+divDetails.classList = 'divDetails'
+divDetails.textContent += noteObject.details;
+const divDueDate = document.createElement('div');
+divDueDate.classList = 'divDueDate'
+divDueDate.textContent += noteObject.dueDate;
+divCreate.append(divTitle, divDetails, divDueDate);
 
 //delete button creation + id assignment to link the button to each created stickynote
 const delCreate = document.createElement('button');
@@ -41,6 +44,8 @@ divCreate.appendChild(delCreate); //creates a button with every note
 let delid = delCreate.id = 'button' + id
 let idAssignment = divCreate.id = 'div' + id++ //assign the delete button to this
 delCreate.addEventListener('click', () => { divCreate.remove()})
+
+popUpBox.classList.remove('show')
 };
 
 
