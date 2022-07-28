@@ -65,6 +65,7 @@
     align-items: center;
     position: absolute;
     opacity: 0;
+    pointer-events:none;
 }
 .popUpBox.show {
     opacity: 1;
@@ -90,8 +91,7 @@
     font-size: 30px;
     background-color: #feff9c;
 }
-
-/* .note { // this is for when the note is saved 
+.note {
     display: flex;
     justify-content: center;
     flex-direction: row;
@@ -99,7 +99,7 @@
     background-color: #feff9c;
     width: 200px;
     height: 200px;
-} */
+}
 #toDoNotes { 
     display: flex;
     flex-direction: row;
