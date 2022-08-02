@@ -13,6 +13,8 @@ const popUpBox = document.getElementById('popUpBox')
 const projectInput = document.getElementById('projectInput')
 const projectInputButton = document.getElementById('create')
 const projectInputTitle = document.getElementById('projectTitle')
+const projectPlacement = document.getElementById('projectHome')
+
 
 
 getInfo.addEventListener('click', () => {addToDo()});
@@ -66,33 +68,27 @@ popUpBox.classList.remove('show')
 };
 
 let projectID = 0;    
-
-
-
 function projectTab() {
     textInput.style.opacity = 0;
     projectInput.style.opacity = 1;
-    
+    getInfo.style.opacity = 0;
+    createProject.style.opacity = 0;
+    }
     projectInputButton.addEventListener('click', () => {  
         const createProjectTab = document.createElement('button')
-        sideMenu.appendChild(createProjectTab)
+        projectPlacement.appendChild(createProjectTab)
         createProjectTab.textContent += projectInputTitle.value 
         popUpBox.classList.remove('show')        
+        createProjectTab.id = projectID++;
+        getInfo.style.opacity = 1;
+        createProject.style.opacity = 1; 
+        textInput.style.opacity = 1;
+        toDoNotesGlobal.style.opacity = 0;
+        projectInputTitle.innerHTML += ''
+        projectInputTitle.textContent += ''});
 
-    } );
+        // ^^ this event listener creates the project tab
 
-};
-
-// function addProject() {
-//     // popUpBox.classList.remove('show')
-//     const createProjectDiv = document.createElement('div')
-//     sideMenu.appendChild(createProjectDiv)
-//     const createButton = document.createElement('button');
-//     sideMenu.appendChild(createButton)
-
-//     createProjectDiv.id = projectID++; // dynamic id assigned to each project div to allow deletion
-
-// }
 function homeTab() {
     toDoNotesGlobal.style.opacity = 1;
 }
@@ -111,9 +107,9 @@ delButton.addEventListener('click', () => {  popUpBox.classList.remove('show')})
    3. Enable plus button to add a toDO note in seperate module -  TICK
    4. Enable projects with different sets of toDo notes -   
    ^ need to add a create Project button or create toDo buttonwhen + is pressed. 
-   If the project one is created we must be able to tab into it and create Todos. 
-   create a tab with the new project (this involves deleting the page and adding the new one
-    when the project is selected once created.)
+   now that I have made the project buttons I need to play around with opacity settings 
+   so that the toDo notes that are assigned to each project are only shown when the project 
+   is selected. note that the home button should show all toDos
 
    */
 
