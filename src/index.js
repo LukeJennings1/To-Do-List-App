@@ -7,10 +7,16 @@ const createProject = document.getElementById('create-project');
 const toDoNotesGlobal = document.getElementById('toDoNotes');
 const tabHome = document.getElementById('Home');
 const sideMenu = document.getElementById('left-side-menu');
+const textInput = document.getElementById('textInput');
+const addButton = document.getElementById('add-Button')
+const popUpBox = document.getElementById('popUpBox')
+const projectInput = document.getElementById('projectInput')
+const projectInputButton = document.getElementById('create')
+const projectInputTitle = document.getElementById('projectTitle')
 
 
 getInfo.addEventListener('click', () => {addToDo()});
-createProject.addEventListener('click', () => {addProject()});
+createProject.addEventListener('click', () => {projectTab()});
 tabHome.addEventListener('click', () => {homeTab()});
 
 
@@ -30,10 +36,9 @@ tabHome.addEventListener('click', () => {homeTab()});
         return (this.title + this.details + this.dueDate) }
 };
 let id = 0; 
-
 function addToDo() {
+    
 const noteObject = new ToDo(title.value, details.value, dueDate.value);
-
 const toDoNoteLocation = document.getElementById('toDoNotes')
 const divCreate = document.createElement('div');
 divCreate.classList = 'note'
@@ -60,23 +65,41 @@ delCreate.addEventListener('click', () => { divCreate.remove()})
 popUpBox.classList.remove('show')
 };
 
-let projectID = 0;           
-function addProject() {
-    toDoNotesGlobal.style.opacity = 0; // sets current content section as invisable
-    // remember to set this back to 1 when we go back to the home tab page. 
-    const createProjectDiv = document.createElement('div')
-    sideMenu.appendChild(createProjectDiv)
-    createProjectDiv.id = projectID++; // dynamic id assigned to each project div to allow deletion
+let projectID = 0;    
 
-}
+
+
+function projectTab() {
+    textInput.style.opacity = 0;
+    projectInput.style.opacity = 1;
+    
+    projectInputButton.addEventListener('click', () => {  
+        const createProjectTab = document.createElement('button')
+        sideMenu.appendChild(createProjectTab)
+        createProjectTab.textContent += projectInputTitle.value 
+        popUpBox.classList.remove('show')        
+
+    } );
+
+};
+
+// function addProject() {
+//     // popUpBox.classList.remove('show')
+//     const createProjectDiv = document.createElement('div')
+//     sideMenu.appendChild(createProjectDiv)
+//     const createButton = document.createElement('button');
+//     sideMenu.appendChild(createButton)
+
+//     createProjectDiv.id = projectID++; // dynamic id assigned to each project div to allow deletion
+
+// }
 function homeTab() {
     toDoNotesGlobal.style.opacity = 1;
 }
 
 // add button animation popup
-const addButton = document.getElementById('add-Button')
-const popUpBox = document.getElementById('popUpBox')
-addButton.addEventListener('click', () => {  popUpBox.classList.add('show')});
+addButton.addEventListener('click', () => {  popUpBox.classList.add('show'),
+projectInput.style.opacity = 0; } );
 const delButton = document.getElementById('del-button')
 delButton.addEventListener('click', () => {  popUpBox.classList.remove('show')});
 
