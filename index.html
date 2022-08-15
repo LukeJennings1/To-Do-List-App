@@ -22,9 +22,8 @@
             <div class = 'content' id="content">list content section
                 <input type="button" class="add-Button" id="add-Button" value="+">
                 <div class = 'toDonotes' id="toDoNotes"></div>
-
                 <div class = 'popUpBox' id="popUpBox">
-                <div class = 'popUp'>
+                <div class = 'popUp' id = 'popUp'>
                     <div class = 'popUpTitle'>Create new // </div>  
                         <div class = 'projectInput' id = 'projectInput' >
                         <input type="text" id = 'projectTitle' placeholder="Input Project Title" required> 
@@ -35,9 +34,11 @@
                     <input type="text" id = 'info' placeholder="Details: Buy MOAR DONUTS" required > 
                     <input type="date" id = 'dateInput' placeholder="Due date" required> 
                     </div>
+                    <div class = 'buttonBox' id = 'buttonBox'>
+                    <!-- <button type="submit" id="submit-button">Add To Do</button> -->
                     <button class="button" id="create-project" >Create Project</button>
-                    <button type="submit" id="submit-button">Add To Do</button>
                     <button class="button" id="del-button" >Close</button>
+                </div>
 
                 </div>
             </div>

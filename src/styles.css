@@ -39,7 +39,7 @@
     height: 600px;
     gap: 5px;
 }
-#add-Button {
+.add-Button {
     position: absolute;
     border: solid black;
     border-radius: 100%;
@@ -107,4 +107,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     gap: 5px    ;
+}
+.projectButton {
+    opacity: 1;
 }
