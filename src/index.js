@@ -150,11 +150,13 @@ function addToDoProject() {
 const noteObject = new ToDo(title.value, details.value, dueDate.value);
 // ^ this creates the new object to store the value of the inbox box on the textbox
 const noteLocation = document.getElementById('content');
-const noteLocationCreate = document.createElement('div');
+// const noteLocationCreate = document.createElement('div');
 const divCreate = document.createElement('div');
-divCreate.classList = 'note'
-noteLocation.append(noteLocationCreate);
-noteLocationCreate.append(divCreate);
+divCreate.classList = 'note';
+// noteLocationCreate.classList = 'noteContainer'
+
+noteLocation.append(divCreate);
+// noteLocationCreate.append(divCreate);
 
 
 //the below section takes the object value that has been taken by the value of the 
