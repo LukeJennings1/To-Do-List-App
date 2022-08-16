@@ -15,7 +15,11 @@ const projectInput = document.getElementById('projectInput')
 const projectInputButton = document.getElementById('create')
 const projectInputTitle = document.getElementById('projectTitle')
 const projectPlacement = document.getElementById('projectHome')
+const content = document.getElementById('content')
+const projectNoteContent = document.getElementById('projectNoteContent')
 const projectClassGrabber = document.getElementsByClassName('projectButton');
+const noteTitle = document.getElementById('noteTitle')
+
 
 const divCreate = document.createElement('button');
 divCreate.textContent += 'Add To Do';
@@ -45,9 +49,6 @@ let id = 0;
 // the below function runs when the add to do button is pressed in the popup. 
 // this function is responcible for adding the sticky note to the screen div from 
 // the popup. 
-
-
-
 function addToDo() { 
 const noteObject = new ToDo(title.value, details.value, dueDate.value);
 // ^ this creates the new object to store the value of the inbox box on the textbox
@@ -62,10 +63,11 @@ toDoNoteLocation.append(divCreate);
 // form text boxes and adds it to the sticky note div created above^ 
 const divTitle = document.createElement('div');
 divTitle.classList = 'divTitle'
+divTitle.textContent += ' Title // '
 divTitle.textContent += noteObject.title;
 const divDetails = document.createElement('div');
 divDetails.classList = 'divDetails'
-divDetails.textContent += noteObject.details;
+divDetails.textContent += 'Info //' + noteObject.details;
 const divDueDate = document.createElement('div');
 divDueDate.classList = 'divDueDate'
 divDueDate.textContent += noteObject.dueDate;
@@ -76,6 +78,8 @@ const delCreate = document.createElement('button');
 divCreate.appendChild(delCreate); //creates a button with every note
 delCreate.id = 'button' + id
 divCreate.id = 'div' + id++ //assign the delete button to this
+delCreate.classList = 'stickyDeleteButton'
+delCreate.textContent = '- Delete Note -'
 delCreate.addEventListener('click', () => { divCreate.remove()})
 
 popUpBox.classList.remove('show') // removes the remove class from the popupbox closing it. 
@@ -98,90 +102,32 @@ function projectTab() {
         popUpBox.classList.remove('show')        
         createProjectTab.id = projectID++;
 
+        const projectPagetitle = document.createElement('div')
+        projectPagetitle.textContent = '- ' + projectInputTitle.value + ' -'
+        projectNoteContent.append(projectPagetitle);
+
         divCreate.style.opacity = 1;
         createProject.style.opacity = 1; 
         textInput.style.opacity = 1; 
         toDoNotesGlobal.style.opacity = 0;
         projectInputTitle.innerHTML += ''
-        createProjectTab.addEventListener('click', () => {
-            addButton.style.opacity = 0,
-            addButton.style.pointerEvents = "none", newAddButton(), divCreate.style.opacity = 0,     divCreate.style.pointerEvents = 'none';
-            ;})
+        noteTitle.style.opacity = 0;
+
+        // createProjectTab.addEventListener('click', () => {
+        //     addButton.style.opacity = 0,
+        //     addButton.style.pointerEvents = "none", newAddButton();
+        //     ;})
 });
-        // ^^ this event listener creates the project tab
-        // projectID
-
-function newAddButton() {
-    const noteLocation = document.getElementById('content');
-    const AddButton = document.createElement('button');
-    AddButton.textContent += '+';
-    AddButton.style.backgroundColor = 'blue';
-    AddButton.classList = 'add-Button';
-    const divContainer = document.createElement('div');
-    divContainer.appendChild(AddButton);
-    divContainer.classList = 'projectButton';
-    noteLocation.append(divContainer);
-
-    const addNote = document.createElement('button');
-    buttonBox.prepend(addNote);
-    addNote.textContent += 'Add To Do';
-    addNote.id = 'addToDoButton'
-    addNote.addEventListener('click', () => {addToDoProject()});
-
-    AddButton.addEventListener('click', () => {  popUpBox.classList.add('show'),
-    projectInput.style.opacity = 0; } );
-    const delButton = document.getElementById('del-button');
-    delButton.addEventListener('click', () => {  popUpBox.classList.remove('show')});
-
-    tabHome.addEventListener('click', () => {AddButton.remove(), divContainer.remove()
-    });
-    // divCreate.remove()
-
-}
 function homeTab() {
     toDoNotesGlobal.style.opacity = 1;
     addButton.style.opacity = 1;
     addButton.style.pointerEvents = "auto";
     divCreate.style.opacity = 1;
     divCreate.style.pointerEvents = 'auto';
-
+    noteTitle.style.opacity = 1;
+    projectNoteContent.style.opacity = 0;
 }
-function addToDoProject() {
-const noteObject = new ToDo(title.value, details.value, dueDate.value);
-// ^ this creates the new object to store the value of the inbox box on the textbox
-const noteLocation = document.getElementById('content');
-// const noteLocationCreate = document.createElement('div');
-const divCreate = document.createElement('div');
-divCreate.classList = 'note';
-// noteLocationCreate.classList = 'noteContainer'
 
-noteLocation.append(divCreate);
-// noteLocationCreate.append(divCreate);
-
-
-//the below section takes the object value that has been taken by the value of the 
-// form text boxes and adds it to the sticky note div created above^ 
-const divTitle = document.createElement('div');
-divTitle.classList = 'divTitle'
-divTitle.textContent += noteObject.title;
-const divDetails = document.createElement('div');
-divDetails.classList = 'divDetails'
-divDetails.textContent += noteObject.details;
-const divDueDate = document.createElement('div');
-divDueDate.classList = 'divDueDate'
-divDueDate.textContent += noteObject.dueDate;
-divCreate.append(divTitle, divDetails, divDueDate);
-
-//delete button creation + id assignment to link the button to each created stickynote
-const delCreate = document.createElement('button');
-divCreate.appendChild(delCreate); //creates a button with every note
-delCreate.id = 'button' + id
-divCreate.id = 'div' + id++ //assign the delete button to this
-delCreate.addEventListener('click', () => { divCreate.remove()})
-
-popUpBox.classList.remove('show') // removes the remove class from the popupbox closing it. 
-
-};
 
 
 

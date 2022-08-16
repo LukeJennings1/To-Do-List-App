@@ -53,6 +53,16 @@
     height: 600px;
     gap: 5px;
     padding: 15px;
+    /* font-size: 40px; */
+}
+.noteTitle{
+    font-size: 32px;
+}
+.projectNoteContent { 
+    height: 600px;
+    position: absolute;
+    width: 85%;
+    font-size: 32px;
 }
 .side-bar-content { 
     display: flex;
@@ -128,14 +138,21 @@
 }
 .note {
     justify-content: center;
-    flex-direction: row;
-    border: solid;
+    align-items: center;
+    border: solid #d5d5d4; 
     background-color: #feff9c;
     width: 200px;
     height: 200px;
     display: flex;
     flex-direction: column;
     gap: 15px;
+    padding: 5px;
+}
+.divTitle {
+    height: 140px;
+}
+.divDetails {
+    height: 300px;
 }
 #toDoNotes { 
     display: flex;
