@@ -19,6 +19,8 @@ const content = document.getElementById('content')
 const projectNoteContent = document.getElementById('projectNoteContent')
 const projectClassGrabber = document.getElementsByClassName('projectButton');
 const noteTitle = document.getElementById('noteTitle')
+const home = document.getElementById('Home')
+let homeTabPressed = false; 
 
 
 const divCreate = document.createElement('button');
@@ -29,15 +31,7 @@ divCreate.addEventListener('click', () => {addToDo()}); // add to do button on p
 createProject.addEventListener('click', () => {projectTab()});
 tabHome.addEventListener('click', () => {homeTab()});
 
-
-
-// ^this takes the value of the title text field and adds console logs it
-// ^ this dates the value of the date text field
-// ^ this dates the value of the date text field
-
- // ^^ needs to be changed so that its called when the addbutton in the popup is used. 
-
- class ToDo {
+ class ToDo { // sticky note constructor function 
     constructor(title,details,dueDate) {
         this.title = title;
         this.details = details;
@@ -85,6 +79,42 @@ delCreate.addEventListener('click', () => { divCreate.remove()})
 popUpBox.classList.remove('show') // removes the remove class from the popupbox closing it. 
 };
 
+
+function addToDoOnProject() { 
+    const noteObject = new ToDo(title.value, details.value, dueDate.value);
+    // ^ this creates the new object to store the value of the inbox box on the textbox
+    const divCreate = document.createElement('div');
+    divCreate.classList = 'note'
+    projectNoteContent.append(divCreate);
+    // this creates the to do sticky note div when the add to do has been pressed on 
+    // the add popup 
+    
+    //the below section takes the object value that has been taken by the value of the 
+    // form text boxes and adds it to the sticky note div created above^ 
+    const divTitle = document.createElement('div');
+    divTitle.classList = 'divTitle'
+    divTitle.textContent += ' Title // '
+    divTitle.textContent += noteObject.title;
+    const divDetails = document.createElement('div');
+    divDetails.classList = 'divDetails';
+    divDetails.textContent += 'Info //' + noteObject.details;
+    const divDueDate = document.createElement('div');
+    divDueDate.classList = 'divDueDate';
+    divDueDate.textContent += noteObject.dueDate;
+    divCreate.append(divTitle, divDetails, divDueDate);
+    
+    //delete button creation + id assignment to link the button to each created stickynote
+    const delCreate = document.createElement('button');
+    divCreate.appendChild(delCreate); //creates a button with every note
+    delCreate.id = 'button' + id
+    divCreate.id = 'div' + id++ //assign the delete button to this
+    delCreate.classList = 'stickyDeleteButton'
+    delCreate.textContent = '- Delete Note -'
+    delCreate.addEventListener('click', () => { divCreate.remove()})
+    
+    popUpBox.classList.remove('show') // removes the remove class from the popupbox closing it. 
+    };
+
 let projectID = 0;
 function projectTab() {
     textInput.style.opacity = 0;
@@ -94,6 +124,7 @@ function projectTab() {
     }
     
     projectInputButton.addEventListener('click', () => {  
+
         const createProjectTab = document.createElement('button')
         projectPlacement.appendChild(createProjectTab) // appends the home button 
         // to the project home div on the left hand side
@@ -101,6 +132,25 @@ function projectTab() {
         createProjectTab.classList = 'projectButton' // adds a class to the created element
         popUpBox.classList.remove('show')        
         createProjectTab.id = projectID++;
+
+        
+        createProjectTab.addEventListener('click', () => { // press on a project 
+            noteTitle.style.opacity = 0;
+            projectNoteContent.style.opacity = 1;
+            projectNoteContent.style.pointerEvents = 'auto';
+            toDoNotesGlobal.style.pointerEvents = 'none';
+            homeTabPressed = false; 
+
+        });
+        divCreate.addEventListener('click', () => {
+            if (homeTabPressed == false) {
+            return  addToDoOnProject()    } 
+            else {
+                return console.log('NAY')
+            }
+         });
+
+
 
         const projectPagetitle = document.createElement('div')
         projectPagetitle.textContent = '- ' + projectInputTitle.value + ' -'
@@ -112,6 +162,7 @@ function projectTab() {
         toDoNotesGlobal.style.opacity = 0;
         projectInputTitle.innerHTML += ''
         noteTitle.style.opacity = 0;
+        projectNoteContent.style.opacity = 1;
 
         // createProjectTab.addEventListener('click', () => {
         //     addButton.style.opacity = 0,
@@ -124,10 +175,15 @@ function homeTab() {
     addButton.style.pointerEvents = "auto";
     divCreate.style.opacity = 1;
     divCreate.style.pointerEvents = 'auto';
+    toDoNotesGlobal.style.pointerEvents = 'auto';
     noteTitle.style.opacity = 1;
     projectNoteContent.style.opacity = 0;
-}
+    projectNoteContent.style.pointerEvents = 'none';
 
+    home.addEventListener('click', () => {
+        homeTabPressed = true; 
+    });
+}
 
 
 
