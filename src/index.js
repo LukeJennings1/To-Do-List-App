@@ -18,9 +18,11 @@ const projectPlacement = document.getElementById('projectHome')
 const content = document.getElementById('content')
 const projectNoteContent = document.getElementById('projectNoteContent')
 const projectClassGrabber = document.getElementsByClassName('projectButton');
+
 const noteTitle = document.getElementById('noteTitle')
 const home = document.getElementById('Home')
 let homeTabPressed = false; 
+
 
 
 const divCreate = document.createElement('button');
@@ -80,40 +82,6 @@ popUpBox.classList.remove('show') // removes the remove class from the popupbox 
 };
 
 
-function addToDoOnProject() { 
-    const noteObject = new ToDo(title.value, details.value, dueDate.value);
-    // ^ this creates the new object to store the value of the inbox box on the textbox
-    const divCreate = document.createElement('div');
-    divCreate.classList = 'note'
-    projectNoteContent.append(divCreate);
-    // this creates the to do sticky note div when the add to do has been pressed on 
-    // the add popup 
-    
-    //the below section takes the object value that has been taken by the value of the 
-    // form text boxes and adds it to the sticky note div created above^ 
-    const divTitle = document.createElement('div');
-    divTitle.classList = 'divTitle'
-    divTitle.textContent += ' Title // '
-    divTitle.textContent += noteObject.title;
-    const divDetails = document.createElement('div');
-    divDetails.classList = 'divDetails';
-    divDetails.textContent += 'Info //' + noteObject.details;
-    const divDueDate = document.createElement('div');
-    divDueDate.classList = 'divDueDate';
-    divDueDate.textContent += noteObject.dueDate;
-    divCreate.append(divTitle, divDetails, divDueDate);
-    
-    //delete button creation + id assignment to link the button to each created stickynote
-    const delCreate = document.createElement('button');
-    divCreate.appendChild(delCreate); //creates a button with every note
-    delCreate.id = 'button' + id
-    divCreate.id = 'div' + id++ //assign the delete button to this
-    delCreate.classList = 'stickyDeleteButton'
-    delCreate.textContent = '- Delete Note -'
-    delCreate.addEventListener('click', () => { divCreate.remove()})
-    
-    popUpBox.classList.remove('show') // removes the remove class from the popupbox closing it. 
-    };
 
 let projectID = 0;
 function projectTab() {
@@ -122,52 +90,99 @@ function projectTab() {
     divCreate.style.opacity = 0;
     createProject.style.opacity = 0;
     }
+
+
+    
+
     
     projectInputButton.addEventListener('click', () => {  
 
+        function addToDoOnProject() { 
+            const noteObject = new ToDo(title.value, details.value, dueDate.value);
+            // ^ this creates the new object to store the value of the inbox box on the textbox
+            const divCreate = document.createElement('div');
+            divCreate.id = id;
+            divCreate.classList = 'note';
+            divSelector.append(divCreate);
+            
+            // this creates the to do sticky note div when the add to do has been pressed on 
+            // the add popup 
+            
+            //the below section takes the object value that has been taken by the value of the 
+            // form text boxes and adds it to the sticky note div created above^ 
+            const divTitle = document.createElement('div');
+            divTitle.classList = 'divTitle'
+            divTitle.textContent += ' Title // '
+            divTitle.textContent += noteObject.title;
+            const divDetails = document.createElement('div');
+            divDetails.classList = 'divDetails';
+            divDetails.textContent += 'Info //' + noteObject.details;
+            const divDueDate = document.createElement('div');
+            divDueDate.classList = 'divDueDate';
+            divDueDate.textContent += noteObject.dueDate;
+            divCreate.append(divTitle, divDetails, divDueDate);
+            
+            //delete button creation + id assignment to link the button to each created stickynote
+            const delCreate = document.createElement('button');
+            divCreate.appendChild(delCreate); //creates a button with every note
+            delCreate.id = 'button' + id
+            divCreate.id = 'div' + id++ //assign the delete button to this
+            delCreate.classList = 'stickyDeleteButton'
+            delCreate.textContent = '- Delete Note -'
+            delCreate.addEventListener('click', () => { divCreate.remove()})
+            
+            popUpBox.classList.remove('show') // removes the remove class from the popupbox closing it. 
+            };
+        
+
         const createProjectTab = document.createElement('button')
+
         projectPlacement.appendChild(createProjectTab) // appends the home button 
         // to the project home div on the left hand side
         createProjectTab.textContent += projectInputTitle.value 
         createProjectTab.classList = 'projectButton' // adds a class to the created element
-        popUpBox.classList.remove('show')        
+        
+        popUpBox.classList.remove('show')
         createProjectTab.id = projectID++;
 
         
-        createProjectTab.addEventListener('click', () => { // press on a project 
-            noteTitle.style.opacity = 0;
-            projectNoteContent.style.opacity = 1;
+        createProjectTab.addEventListener('click', () => { // press on a project tab
             projectNoteContent.style.pointerEvents = 'auto';
             toDoNotesGlobal.style.pointerEvents = 'none';
             homeTabPressed = false; 
+            projectPagetitle.style.opacity = 1;
+            noteTitle.style.opacity = 0;
+
+
 
         });
         divCreate.addEventListener('click', () => {
             if (homeTabPressed == false) {
-            return  addToDoOnProject()    } 
-            else {
-                return console.log('NAY')
-            }
-         });
+            return addToDoOnProject()
 
-
-
-        const projectPagetitle = document.createElement('div')
-        projectPagetitle.textContent = '- ' + projectInputTitle.value + ' -'
+        } 
+         });    
+// this creates the project content tab space where the stickies go
+        const projectPagetitle = document.createElement('div');
+        projectPagetitle.id = projectID;
+        projectPagetitle.classList = 'projectSpace'
+        projectPagetitle.textContent = '- ' + projectInputTitle.value + ' -';
         projectNoteContent.append(projectPagetitle);
+        projectPagetitle.style.position = 'absolute';
+        const divSelector = document.getElementById(projectID)
+
+        home.addEventListener('click', () => {
+            projectPagetitle.style.opacity = 0;
+            homeTabPressed = true; 
+
+        });
 
         divCreate.style.opacity = 1;
         createProject.style.opacity = 1; 
         textInput.style.opacity = 1; 
         toDoNotesGlobal.style.opacity = 0;
-        projectInputTitle.innerHTML += ''
-        noteTitle.style.opacity = 0;
-        projectNoteContent.style.opacity = 1;
+        projectInputTitle.innerHTML += '';
 
-        // createProjectTab.addEventListener('click', () => {
-        //     addButton.style.opacity = 0,
-        //     addButton.style.pointerEvents = "none", newAddButton();
-        //     ;})
 });
 function homeTab() {
     toDoNotesGlobal.style.opacity = 1;
@@ -177,12 +192,7 @@ function homeTab() {
     divCreate.style.pointerEvents = 'auto';
     toDoNotesGlobal.style.pointerEvents = 'auto';
     noteTitle.style.opacity = 1;
-    projectNoteContent.style.opacity = 0;
     projectNoteContent.style.pointerEvents = 'none';
-
-    home.addEventListener('click', () => {
-        homeTabPressed = true; 
-    });
 }
 
 
@@ -200,18 +210,7 @@ delButton.addEventListener('click', () => {  popUpBox.classList.remove('show')})
 
 
 
-/* 1. Create and test constructor logic - TICK 
-   2. Create basic website front in HTML and CSS - TICK 
-   3. Enable plus button to add a toDO note in seperate module -  TICK
-   4. Enable projects with different sets of toDo notes -   
-   ^ need to add a create Project button or create toDo buttonwhen + is pressed. 
-   now that I have made the project buttons I need to play around with opacity settings 
-   so that the toDo notes that are assigned to each project are only shown when the project 
-   is selected. note that the home button should show all.
-
-   I think I can dynamically assign sticky notes by changing the plus button so that
-   it allocates it to the div once the project tab has been pressed. Also, a div can be created
-   when then project is made that takes the place of the list contents
-
+/* I just need to change it so that when a new project tab is pressed the previous tabs 
+opactiy and click event is changed so that it does not show up on the new one
    */
 

@@ -62,7 +62,6 @@
     position: absolute;
     width: 85%;
     font-size: 32px;
-    opacity: 0;
     pointer-events: none;
 }
 .side-bar-content { 
@@ -79,7 +78,9 @@
     height: auto;
     padding-top: 7.5px;
     padding-bottom: 7.5px;
-
+}
+.projectSpace { 
+    opacity: 0;
 }
 .add-Button {
     position: absolute;
